@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 import React, { useContext } from 'react';
 
 import { fileNameAtom, showBackgroundAtom } from '../store';

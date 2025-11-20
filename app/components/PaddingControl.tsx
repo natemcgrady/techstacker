@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAtom } from 'jotai';
-import classNames from 'classnames';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
 import ControlContainer from './ControlContainer';
@@ -16,8 +15,7 @@ import useHotkeys from '@/utils/useHotkeys';
 const PaddingControl: React.FC = () => {
   const [padding, setPadding] = useAtom(paddingAtom);
 
-  useHotkeys('p', (e) => {
-    console.info(e.target);
+  useHotkeys('p', () => {
     const currentIndex = PADDING_OPTIONS.indexOf(padding);
     if (PADDING_OPTIONS[currentIndex + 1]) {
       setPadding(PADDING_OPTIONS[currentIndex + 1]);

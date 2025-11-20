@@ -691,16 +691,11 @@ const themeBackgroundAtom = atom<string>((get) => {
   return `linear-gradient(140deg, ${from}, ${to})`;
 });
 
-const themeFontAtom = atom<Font | null>(
-  (get) => get(themeAtom)?.font || 'jetbrains-mono'
-);
-
 const unlockedThemesAtom = atomWithStorage<Theme['id'][]>('unlockedThemes', []);
 
 export {
   themeAtom,
   themeCSSAtom,
   themeBackgroundAtom,
-  themeFontAtom,
   unlockedThemesAtom,
 };
