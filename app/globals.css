@@ -1,49 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 5%;
-    --panel: 0 0% 9.4118%; /* gray-2 */
-    --white: 0 0% 100%;
-    --black: 0 0% 0%;
-    --brand: 0 100% 69%;
-    --purple: 255.6 99.2% 75.9%;
-    --blue: 201.4 99.4% 66.8%;
-    --gray-1: 0 0% 5.098%;
-    --gray-2: 0 0% 9.4118%;
-    --gray-3: 0 0% 13.333%;
-    --gray-4: 0 0% 16.078%;
-    --gray-5: 0 0% 19.216%;
-    --gray-6: 0 0% 22.745%;
-    --gray-7: 0 0% 28.235%;
-    --gray-8: 0 0% 37.647%;
-    --gray-9: 0 0% 43.137%;
-    --gray-10: 0 0% 48.235%;
-    --gray-11: 0 0% 70.588%;
-    --gray-12: 0 0% 93.333%;
-    --gray-a1: hsla(0, 0%, 0%, 0);
-    --gray-a2: hsla(0, 0%, 100%, 0.0353);
-    --gray-a3: hsla(0, 0%, 100%, 0.0706);
-    --gray-a4: hsla(0, 0%, 100%, 0.1059);
-    --gray-a5: hsla(0, 0%, 100%, 0.1333);
-    --gray-a6: hsla(0, 0%, 100%, 0.1725);
-    --gray-a7: hsla(0, 0%, 100%, 0.2314);
-    --gray-a8: hsla(0, 0%, 100%, 0.3333);
-    --gray-a9: hsla(0, 0%, 100%, 0.3922);
-    --gray-a10: hsla(0, 0%, 100%, 0.4471);
-    --gray-a11: hsla(0, 0%, 100%, 0.6863);
-    --gray-a12: hsla(0, 0%, 100%, 0.9294);
-  }
-
-  .themes-body {
-    background-image: radial-gradient(
-      43.48% 62.9% at 50% 31.28%,
-      hsl(0 0% 100% / 0.2) 0,
-      hsl(0 0% 100% / 0) 100%
-    );
-  }
+/* Define CSS variables first for use in @theme */
+:root {
+  --background: 0 0% 5%;
+  --panel: 0 0% 9.4118%; /* gray-2 */
+  --white: 0 0% 100%;
+  --black: 0 0% 0%;
+  --brand: 0 100% 69%;
+  --purple: 255.6 99.2% 75.9%;
+  --blue: 201.4 99.4% 66.8%;
+  --gray-1: 0 0% 5.098%;
+  --gray-2: 0 0% 9.4118%;
+  --gray-3: 0 0% 13.333%;
+  --gray-4: 0 0% 16.078%;
+  --gray-5: 0 0% 19.216%;
+  --gray-6: 0 0% 22.745%;
+  --gray-7: 0 0% 28.235%;
+  --gray-8: 0 0% 37.647%;
+  --gray-9: 0 0% 43.137%;
+  --gray-10: 0 0% 48.235%;
+  --gray-11: 0 0% 70.588%;
+  --gray-12: 0 0% 93.333%;
+  --gray-a1: hsla(0, 0%, 0%, 0);
+  --gray-a2: hsla(0, 0%, 100%, 0.0353);
+  --gray-a3: hsla(0, 0%, 100%, 0.0706);
+  --gray-a4: hsla(0, 0%, 100%, 0.1059);
+  --gray-a5: hsla(0, 0%, 100%, 0.1333);
+  --gray-a6: hsla(0, 0%, 100%, 0.1725);
+  --gray-a7: hsla(0, 0%, 100%, 0.2314);
+  --gray-a8: hsla(0, 0%, 100%, 0.3333);
+  --gray-a9: hsla(0, 0%, 100%, 0.3922);
+  --gray-a10: hsla(0, 0%, 100%, 0.4471);
+  --gray-a11: hsla(0, 0%, 100%, 0.6863);
+  --gray-a12: hsla(0, 0%, 100%, 0.9294);
 }
 
 .light {
@@ -74,8 +63,148 @@
   --gray-a10: hsla(0, 0%, 0%, 0.4863);
   --gray-a11: hsla(0, 0%, 0%, 0.6078);
   --gray-a12: hsla(0, 0%, 0%, 0.8745);
+}
 
+@theme {
+  /* Colors - using CSS variables with alpha support */
+  --color-background: hsl(var(--background) / <alpha-value>);
+  --color-panel: hsl(var(--panel) / <alpha-value>);
+  --color-brand: hsl(var(--brand) / <alpha-value>);
+  --color-purple: hsl(var(--purple) / <alpha-value>);
+  --color-blue: hsl(var(--blue) / <alpha-value>);
+  --color-gray-1: hsl(var(--gray-1) / <alpha-value>);
+  --color-gray-2: hsl(var(--gray-2) / <alpha-value>);
+  --color-gray-3: hsl(var(--gray-3) / <alpha-value>);
+  --color-gray-4: hsl(var(--gray-4) / <alpha-value>);
+  --color-gray-5: hsl(var(--gray-5) / <alpha-value>);
+  --color-gray-6: hsl(var(--gray-6) / <alpha-value>);
+  --color-gray-7: hsl(var(--gray-7) / <alpha-value>);
+  --color-gray-8: hsl(var(--gray-8) / <alpha-value>);
+  --color-gray-9: hsl(var(--gray-9) / <alpha-value>);
+  --color-gray-10: hsl(var(--gray-10) / <alpha-value>);
+  --color-gray-11: hsl(var(--gray-11) / <alpha-value>);
+  --color-gray-12: hsl(var(--gray-12) / <alpha-value>);
+  --color-gray-a1: var(--gray-a1);
+  --color-gray-a2: var(--gray-a2);
+  --color-gray-a3: var(--gray-a3);
+  --color-gray-a4: var(--gray-a4);
+  --color-gray-a5: var(--gray-a5);
+  --color-gray-a6: var(--gray-a6);
+  --color-gray-a7: var(--gray-a7);
+  --color-gray-a8: var(--gray-a8);
+  --color-gray-a9: var(--gray-a9);
+  --color-gray-a10: var(--gray-a10);
+  --color-gray-a11: var(--gray-a11);
+  --color-gray-a12: var(--gray-a12);
+
+  /* Spacing */
+  --spacing-scrollbar-offset: calc(
+    16px + var(--removed-body-scroll-bar-size, 0px)
+  );
+
+  /* Border Radius */
+  --radius-inherit: inherit;
+
+  /* Font Size */
+  --font-size-xxs: 11px;
+
+  /* Font Family */
+  --font-family-sans:
+    Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Animations */
+  --animate-slide-down-and-fade: slideDownAndFade 250ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-left-and-fade: slideLeftAndFade 250ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-up-and-fade: slideUpAndFade 250ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-right-and-fade: slideRightAndFade 250ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-overlay-show: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-content-show: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom breakpoints using @custom-media */
+@custom-media --tall (min-height: 840px);
+@custom-media --tallx2 (min-height: 1000px);
+@custom-media --desktop (min-height: 840px) and (min-width: 960px);
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translateY(-1%) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%) scale(1);
+  }
+}
+
+@layer base {
   .themes-body {
+    background-image: radial-gradient(
+      43.48% 62.9% at 50% 31.28%,
+      hsl(0 0% 100% / 0.2) 0,
+      hsl(0 0% 100% / 0) 100%
+    );
+  }
+
+  .light .themes-body {
     background-image: radial-gradient(
       43.48% 62.9% at 50% 31.28%,
       hsl(0, 0, 0, 0.2) 0,
@@ -201,7 +330,7 @@ svg {
   --line-number: rgba(0, 0, 0, 0.2);
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --frame-background: rgba(0, 0, 0, 0.75);
   --frame-control-color: rgba(255, 255, 255, 0.2);
   --frame-title-placeholder-color: rgba(255, 255, 255, 0.3);
@@ -255,7 +384,7 @@ svg {
       margin-top: 12px;
       margin-bottom: 12px;
       color: rgba(255, 255, 255, 0.6);
-      content: 'Recents';
+      content: "Recents";
       font-size: 13px;
       font-weight: 400;
       line-height: 16px;
@@ -266,7 +395,7 @@ svg {
     display: block;
     margin-bottom: 12px;
     color: rgba(255, 255, 255, 0.6);
-    content: 'Pick color';
+    content: "Pick color";
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;
@@ -368,16 +497,16 @@ svg {
   animation: flicker 1000ms linear;
 }
 
-.dark [data-hide-on-theme='dark'],
-.light [data-hide-on-theme='light'] {
+.dark [data-hide-on-theme="dark"],
+.light [data-hide-on-theme="light"] {
   display: none;
 }
 
-.dark [data-theme-toggle='dark'] {
+.dark [data-theme-toggle="dark"] {
   @apply bg-white/10;
 }
 
-.light [data-theme-toggle='light'] {
+.light [data-theme-toggle="light"] {
   @apply bg-black/10;
 }
 
@@ -385,10 +514,10 @@ svg {
   transition: opacity 200ms ease-in-out;
 }
 
-.light [data-wallpaper='dark'] {
+.light [data-wallpaper="dark"] {
   opacity: 0 !important;
 }
-.dark [data-wallpaper='light'] {
+.dark [data-wallpaper="light"] {
   opacity: 0 !important;
 }
 
