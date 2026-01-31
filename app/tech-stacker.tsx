@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import getWasm from "shiki/wasm";
 import { highlighterAtom } from "./store";
 import { useAtom } from "jotai";
 
@@ -14,7 +13,8 @@ import FrameContextStore from "./store/FrameContextStore";
 import styles from "./code.module.css";
 import NoSSR from "./components/NoSSR";
 
-import { Highlighter, getHighlighterCore } from "shiki";
+import { type Highlighter, createHighlighterCore } from "shiki";
+import { createOnigurumaEngine } from "shiki/engine/oniguruma";
 import { LANGUAGES } from "./util/languages";
 
 import tailwindLight from "./assets/tailwind/light.json";
@@ -26,10 +26,10 @@ export function TechStacker() {
   const [highlighter, setHighlighter] = useAtom(highlighterAtom);
 
   useEffect(() => {
-    getHighlighterCore({
+    createHighlighterCore({
       themes: [shikiTheme, tailwindLight, tailwindDark],
       langs: [LANGUAGES.javascript.src(), LANGUAGES.tsx.src(), LANGUAGES.swift.src(), LANGUAGES.python.src()],
-      loadWasm: getWasm,
+      engine: createOnigurumaEngine(() => import("shiki/wasm")),
     }).then((highlighter) => {
       setHighlighter(highlighter as Highlighter);
     });
