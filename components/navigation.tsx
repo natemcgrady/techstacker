@@ -1,10 +1,10 @@
 'use client';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils';
 
 export function Navigation() {
   return (
-    <nav className='flex items-center gap-3 h-[50px] pl-4 pr-5 bg-gray-2 text-white w-full fixed z-10'>
+    <nav className='flex items-center gap-3 h-[50px] pl-4 pr-5 bg-card text-foreground w-full fixed z-10'>
       <div
         className={cn(
           'flex items-center gap-3 transition-transform ease-in-out'

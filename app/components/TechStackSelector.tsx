@@ -10,8 +10,8 @@ import {
   toggleSidebarAtom,
 } from '../store/selectedTools';
 import { themeAtom } from '../store/themes';
-import { Button } from '@/components/button';
-import { cn } from '@/utils/cn';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 const TechStackSelector: React.FC = () => {
@@ -50,21 +50,21 @@ const TechStackSelector: React.FC = () => {
   return (
     <div
       className={cn(
-        'fixed z-10 top-[50px] right-0 h-[calc(100vh-50px)] bg-panel border-l border-gray-6 transition-all duration-300 ease-in-out overflow-hidden',
+        'fixed z-10 top-[50px] right-0 h-[calc(100vh-50px)] bg-card border-l border-border transition-all duration-300 ease-in-out overflow-hidden',
         isCollapsed ? 'w-12' : 'w-80'
       )}
     >
       {/* Collapse/Expand Button */}
-      <div className='flex items-center justify-between p-3 border-b border-gray-6'>
+      <div className='flex items-center justify-between p-3 border-b border-border'>
         {!isCollapsed && (
           <div className='flex items-center gap-2'>
-            <h2 className='text-lg font-semibold text-gray-12'>Tech Stack</h2>
+            <h2 className='text-lg font-semibold text-foreground'>Tech Stack</h2>
             {selectedTools.length > 0 && (
               <Button
-                variant='transparent'
-                size='medium'
+                variant='ghost'
+                size='sm'
                 onClick={clearSelectedTools}
-                className='text-xs text-gray-11 hover:text-gray-12'
+                className='text-xs text-muted-foreground hover:text-foreground'
                 title='Clear all selected tools'
               >
                 Clear
@@ -73,9 +73,8 @@ const TechStackSelector: React.FC = () => {
           </div>
         )}
         <Button
-          variant='transparent'
-          size='medium'
-          iconOnly
+          variant='ghost'
+          size='icon'
           onClick={toggleSidebar}
           className='shrink-0'
           title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
@@ -105,7 +104,7 @@ const TechStackSelector: React.FC = () => {
       <div
         className={cn(
           'h-[calc(100%-73px)] overflow-y-auto transition-all duration-300',
-          'scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent hover:scrollbar-thumb-gray-6',
+          'scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent hover:scrollbar-thumb-muted-foreground/50',
           isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'
         )}
         style={{
@@ -122,7 +121,7 @@ const TechStackSelector: React.FC = () => {
         <div className='p-4 space-y-6'>
           {categories.map(({ key, label }) => (
             <div key={key}>
-              <h3 className='mb-3 text-sm font-medium text-gray-11 uppercase tracking-wider'>
+              <h3 className='mb-3 text-sm font-medium text-muted-foreground uppercase tracking-wider'>
                 {label}
               </h3>
               <div className='grid grid-cols-3 gap-2'>
@@ -131,8 +130,8 @@ const TechStackSelector: React.FC = () => {
                     key={tool.id}
                     className={cn(
                       'flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 hover:scale-105',
-                      'bg-gray-3 border-transparent hover:border-gray-6 hover:bg-gray-4',
-                      'focus:outline-none focus:ring-2 focus:ring-gray-8',
+                      'bg-muted border-transparent hover:border-border hover:bg-accent',
+                      'focus:outline-none focus:ring-2 focus:ring-ring',
                       !isSelected(tool.id) && 'focus:border-transparent',
                       isSelected(tool.id) && 'shadow-sm'
                     )}
@@ -157,7 +156,7 @@ const TechStackSelector: React.FC = () => {
                         className='object-contain max-w-full max-h-full'
                       />
                     </div>
-                    <span className='text-xs font-medium text-gray-12 text-center leading-tight'>
+                    <span className='text-xs font-medium text-foreground text-center leading-tight'>
                       {tool.name}
                     </span>
                   </button>

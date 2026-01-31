@@ -6,13 +6,14 @@ import {
   Roboto_Mono,
 } from 'next/font/google';
 import './globals.css';
-import cn from 'classnames';
+import { cn } from '@/lib/utils';
 import { BASE_URL } from '@/utils/common';
-import { TooltipProvider } from '@/components/tooltip';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { Viewport } from 'next';
-import { Toaster } from '@/components/toast';
+import { Toaster } from '@/components/ui/sonner';
 import { GeistMono } from 'geist/font/mono';
 import { Navigation } from '@/components/navigation';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -77,26 +78,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className='dark' style={{ colorScheme: 'dark' }}>
-      <TooltipProvider>
-        <body
-          className={cn(
-            'isolate',
-            inter.className,
-            jetBrainsMono.variable,
-            ibmPlexMono.variable,
-            firaCode.variable,
-            robotoMono.variable
-          )}
-          style={
-            { '--font-geist-mono': geistMonoFontName } as React.CSSProperties
-          }
+    <html lang='en' suppressHydrationWarning>
+      <body
+        className={cn(
+          'isolate',
+          inter.className,
+          jetBrainsMono.variable,
+          ibmPlexMono.variable,
+          firaCode.variable,
+          robotoMono.variable
+        )}
+        style={
+          { '--font-geist-mono': geistMonoFontName } as React.CSSProperties
+        }
+      >
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='dark'
+          enableSystem
+          disableTransitionOnChange
         >
-          <Navigation />
-          <main className='flex flex-col min-h-full pt-[50px]'>{children}</main>
-          <Toaster position='top-center' offset={70} duration={2000} />
-        </body>
-      </TooltipProvider>
+          <TooltipProvider>
+            <Navigation />
+            <main className='flex flex-col min-h-full pt-[50px]'>{children}</main>
+            <Toaster position='top-center' offset={70} duration={2000} />
+          </TooltipProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

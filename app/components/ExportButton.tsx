@@ -20,8 +20,8 @@ import {
   SIZE_LABELS,
   exportSizeAtom,
 } from '../store/image';
-import { ButtonGroup } from '@/components/button-group';
-import { Button } from '@/components/button';
+import { ButtonGroup } from '@/components/ui/button-group';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,12 +33,18 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@/components/dropdown-menu';
-import { Kbd, Kbds } from '@/components/kbd';
+} from '@/components/ui/dropdown-menu';
+import { Kbd, Kbds } from '@/components/ui/kbd';
 
 const ExportButton: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pngClipboardSupported = usePngClipboardSupported();
+
+  // Ensure consistent hydration by only showing clipboard option after mount
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   const frameContext = useContext(FrameContext);
   const [, setFlashMessage] = useAtom(derivedFlashMessageAtom);
   const [, setFlashShown] = useAtom(flashShownAtom);
@@ -168,7 +174,7 @@ const ExportButton: React.FC = () => {
     <ButtonGroup>
       <Button
         onClick={handleExportClick}
-        variant='primary'
+        variant='default'
         aria-label='Export as PNG'
       >
         <Download className='w-4 h-4' />
@@ -179,7 +185,7 @@ const ExportButton: React.FC = () => {
         onOpenChange={(open) => setDropdownOpen(open)}
       >
         <DropdownMenuTrigger asChild>
-          <Button variant='primary' aria-label='See other export options'>
+          <Button variant='default' aria-label='See other export options'>
             <ChevronDownIcon className='w-4 h-4' />
           </Button>
         </DropdownMenuTrigger>
@@ -199,7 +205,7 @@ const ExportButton: React.FC = () => {
               <Kbd>S</Kbd>
             </Kbds>
           </DropdownMenuItem>
-          {pngClipboardSupported && (
+          {mounted && pngClipboardSupported && (
             <DropdownMenuItem onSelect={dropdownHandler(copyPng)}>
               <ClipboardIcon /> Copy Image
               <Kbds>
@@ -210,8 +216,9 @@ const ExportButton: React.FC = () => {
           )}
           <DropdownMenuSeparator />
           <DropdownMenuSub>
-            <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>
+            <DropdownMenuSubTrigger>
               <ArrowsExpandingIcon /> Size
+              <span className="ml-auto text-xs text-muted-foreground">{SIZE_LABELS[exportSize]}</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuSubContent sideOffset={8}>
               <DropdownMenuRadioGroup value={exportSize.toString()}>

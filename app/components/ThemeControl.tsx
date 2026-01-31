@@ -14,9 +14,8 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectValue,
-} from '@/components/select';
+} from '@/components/ui/select';
 import { SelectItemText } from '@radix-ui/react-select';
-import { ChevronUp } from 'lucide-react';
 
 const ThemeControl: React.FC = () => {
   const [currentTheme, atomSetTheme] = useAtom(themeAtom);
@@ -74,7 +73,7 @@ const ThemeControl: React.FC = () => {
           setTheme(theme);
         }}
       >
-        <SelectTrigger size='small' className='w-[60px]' icon={ChevronUp}>
+        <SelectTrigger size='sm' className='w-[60px]'>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
